@@ -1,0 +1,32 @@
+import Logo from "@/components/Logo";
+import SearchBar from "@/components/SearchBar";
+
+export default function Home() {
+  return (
+    <div className="h-[80vh] w-full flex justify-center items-center">
+      <div className="flex flex-col container">
+        <div className="gradient-box rounded-2xl flex flex-col shadow-xl">
+          <div className="flex flex-col md:flex-row items-center justify-around space-y-8">
+
+            <div className="">
+              <Logo />
+            </div>
+
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="uppercase text-7xl md:text-8xl lg:text-9xl shadow-sm font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white/80 to-blue-400 ">
+                next
+              </h1>
+              <h1 className="uppercase text-3xl md:text-4xl lg:text-5xl font-semibold font-sub bg-gradient-to-r from-white/90 to-white/80 bg-clip-text text-transparent">
+                spotify stats
+              </h1>
+            </div>
+
+          </div>
+        </div>
+
+        <SearchBar />
+
+      </div>
+    </div>
+  )
+}
