@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 import base64
-from requests import post, get
+from requests import post
 import json
 
 # load env variables
@@ -31,5 +31,5 @@ def get_token():
 def get_auth_header(token):
     return {"Authorization": "Bearer " + token}
 
-token = get_token()
-headers = get_auth_header(token=token)
+spotify_token = get_token()
+spotify_headers = get_auth_header(token=spotify_token)

@@ -1,17 +1,16 @@
-from flask import Flask
-from __init__ import *
-from flask_cors import CORS
+import sys
+from api import app
+from api.helpers.seek import *
 
+sys.path.insert(0, 'api/__init__.py')
+sys.path.insert(0, 'api/helpers/__init__.py')
 
-
-app = Flask(__name__)
-CORS(app)
 
 
 @app.route("/api/search/<string:id>")
 def searchArtist(id):
     if (len(id) > 0):
-        results = seek(id)
+        results = seekFunction(id)
     else:
         results = None
     return results
