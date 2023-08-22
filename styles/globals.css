@@ -16,11 +16,15 @@ body {
 }
 
 .gradient-box {
-  background: linear-gradient(#0e0d0da9, #171717a9);
+  background: transparent;
   padding: 2rem;
   backdrop-filter: blur(1px);
 }
 
 .font-sub {
   font-family: 'Rubik Mono One', sans-serif;
+}
+
+.input {
+  @apply w-[20rem] sm:w-[25rem] md:w-[40rem] lg:w-[30rem] mt-10 shadow appearance-none border border-blue-400 rounded py-4 px-4 mb-3 leading-tight focus:outline-none shadow-blue-400/30 bg-slate-800/75 text-[#eeeeeeea]
 }

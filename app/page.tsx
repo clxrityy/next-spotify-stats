@@ -4,11 +4,11 @@ import SearchBar from "@/components/SearchBar";
 export default function Home() {
   return (
     <div className="h-[80vh] w-full flex justify-center items-center">
-      <div className="flex flex-col container">
-        <div className="gradient-box rounded-2xl flex flex-col shadow-xl">
-          <div className="flex flex-col md:flex-row items-center justify-around space-y-8">
+      <div className="flex flex-col container lg:flex-row justify-center items-center space-x-0 xl:space-x-[14rem]">
+        <div className="gradient-box rounded-2xl flex flex-col shadow-xl lg:shadow-none">
+          <div className="flex flex-col md:flex-row lg:flex-col items-center justify-around space-y-8">
 
-            <div className="">
+            <div className="flex">
               <Logo />
             </div>
 

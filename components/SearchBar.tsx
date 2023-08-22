@@ -1,5 +1,6 @@
 'use client';
 import { Result } from '@/util/types';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useCallback, useRef, useState } from 'react';
 
@@ -31,9 +32,10 @@ const SearchBar = () => {
                     .then(res => {
                         setResult({
                             id: res.id,
-                            name: res.name
+                            name: res.name,
+                            images: res.images,
                         });
-                        console.log(res.name);
+                        console.log(res);
                     });
             } catch (err) {
                 console.log(err);
@@ -59,24 +61,28 @@ const SearchBar = () => {
     return (
         <div className='flex items-center justify-center'>
             <div className='container'>
-                <div ref={searchRef}>
+                <div ref={searchRef} className='flex flex-col space-y-10 items-center justify-center'>
 
                     <input
-                        className='w-full'
+                        className='input'
                         onChange={onChange}
                         onFocus={onFocus}
                         placeholder='Search artists...'
                         type='text'
                         value={query}
+                        required
                     />
 
                     {
                         active && result?.name != null && (
-                            <ul className=''>
-                                <li>
-                                    {result.name}
-                                </li>
-                            </ul>
+                            <Link href='/'>
+                                <div className='flex items-center space-x-4'>
+                                    <Image src={`${result.images[0].url}`} alt={result.name} height={100} width={100} className='rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all' />
+                                    <p className='text-2xl md:text-3xl lg:text-4xl font-semibold text-[#eee]/90 tracking-wider hover:underline underline-offset-4 transition-all duration-300 ease-linear hover:text-blue-400'>
+                                        {result.name}
+                                    </p>
+                                </div>
+                            </Link>
                         )
                     }
 

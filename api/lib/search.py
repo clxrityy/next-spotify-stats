@@ -13,6 +13,6 @@ def search(artist_name):
     if len(json_result) == 0:
         print("No artists found")
         return None
-    
+        
     return json_result[0]
 
