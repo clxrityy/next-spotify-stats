@@ -1,6 +1,6 @@
 import sys
-from api import app
-from api.helpers.seek import *
+from __init__ import app
+from helpers.seek import *
 
 sys.path.insert(0, 'api/__init__.py')
 sys.path.insert(0, 'api/helpers/__init__.py')

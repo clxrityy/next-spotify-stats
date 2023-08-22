@@ -1,6 +1,6 @@
 from requests import get
 import json
-from api.helpers.credentials import spotify_headers
+from helpers.credentials import spotify_headers
 import sys
 
 sys.path.insert(0, 'api/helpers/credentials.py')
