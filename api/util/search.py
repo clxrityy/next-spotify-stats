@@ -1,6 +1,6 @@
-from lib.token import headers
 from requests import post, get
 import json
+from util.token import headers
 
 def search(artist_name):
     url = 'https://api.spotify.com/v1/search'
