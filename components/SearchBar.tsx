@@ -11,7 +11,7 @@ const SearchBar = () => {
     const [active, setActive] = useState<boolean>(false);
     const [result, setResult] = useState<Result>();
 
-    const searchEndpoint = (query: string) => `http://127.0.0.1:5328/api/search/${query}`;
+    const searchEndpoint = (query: string) => process.env.NODE_ENV === 'development' && `http://127.0.0.1:5328/api/search/${query}` || `https://next-spotify-stats.vercel.app/api/search/${query}`;
 
     async function getData(query: string) {
         const res = await fetch(searchEndpoint(query));
