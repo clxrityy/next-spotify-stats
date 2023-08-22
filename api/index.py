@@ -1,5 +1,5 @@
 from flask import Flask
-from lib.search import search
+from api.lib.search import search
 from flask_cors import CORS
 
 
