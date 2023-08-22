@@ -1,8 +1,8 @@
 from requests import post, get
 import json
-from util.token import headers
+from __init__ import *
 
-def search(artist_name):
+def seek(artist_name):
     url = 'https://api.spotify.com/v1/search'
     query = f"?q={artist_name}&type=artist&limit=6"
     

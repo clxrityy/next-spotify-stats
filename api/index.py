@@ -1,5 +1,5 @@
 from flask import Flask
-from util.search import search
+from __init__ import *
 from flask_cors import CORS
 
 
@@ -11,7 +11,7 @@ CORS(app)
 @app.route("/api/search/<string:id>")
 def searchArtist(id):
     if (len(id) > 0):
-        results = search(id)
+        results = seek(id)
     else:
         results = None
     return results
