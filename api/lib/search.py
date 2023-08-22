@@ -1,4 +1,4 @@
-from api.lib.token import headers
+from lib.token import headers
 from requests import post, get
 import json
 
