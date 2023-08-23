@@ -3,6 +3,7 @@ import { Result } from '@/util/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useCallback, useRef, useState } from 'react';
+import{ popularity } from '@/util/popularity';
 
 const SearchBar = () => {
 
@@ -10,6 +11,7 @@ const SearchBar = () => {
     const [query, setQuery] = useState<string>('');
     const [active, setActive] = useState<boolean>(false);
     const [result, setResult] = useState<Result>();
+    const [scale, setScale] = useState<number>();
 
     const searchEndpoint = (query: string) => process.env.NODE_ENV === 'development' ? `http://127.0.0.1:5328/api/search/${query}` : `https://next-spotify-stats.vercel.app/api/search/${query}`;
 
@@ -34,13 +36,18 @@ const SearchBar = () => {
                             id: res.id,
                             name: res.name,
                             images: res.images,
+                            popularity: res.popularity,
+                            followers: res.followers,
+                            genres: res.genres,
+                            external_urls: res.external_urls,
                         });
-                        console.log(res);
+                        setScale(res.popularity);
                     });
             } catch (err) {
                 console.log(err);
             }
         } else {
+            console.log(result)
             setResult(result);
         }
 
@@ -57,6 +64,10 @@ const SearchBar = () => {
             window.removeEventListener('click', onClick);
         }
     }, []);
+
+
+    const color = popularity(scale!);
+    console.log(color!);
 
     return (
         <div className='flex items-center justify-center'>
@@ -75,14 +86,48 @@ const SearchBar = () => {
 
                     {
                         active && result?.name != null && (
-                            <Link href='/'>
-                                <div className='flex items-center space-x-4'>
-                                    <Image src={`${result.images[0].url}`} alt={result.name} height={100} width={100} className='rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all' />
-                                    <p className='text-2xl md:text-3xl lg:text-4xl font-semibold text-[#eee]/90 tracking-wider hover:underline underline-offset-4 transition-all duration-300 ease-linear hover:text-blue-400'>
-                                        {result.name}
-                                    </p>
+                            <div className='artist-box container'>
+
+                                <div className='flex flex-row space-x-6'>
+
+                                    {/* IMAGE */}
+                                    <Link href={result.external_urls.spotify}>
+                                        <Image src={`${result.images[0].url}`} className='rounded-lg' width={150} height={150} alt={result.name} />
+                                    </Link>
+                                    {/* INFO */}
+                                    <div className='flex flex-col items-start justify-evenly'>
+                                        {/* TITLE */}
+                                        <Link href={result.external_urls.spotify} className='link'>
+                                            <h1 className='font-semibold text-3xl md:text-4xl text-white/95 tracking-wide'>
+                                                {result.name}
+                                            </h1>
+                                        </Link>
+                                        {/* FOLLOWERS */}
+                                        <p className='text-sm space-x-1'>
+                                            <span className='tracking-tightest text-xs font-semibold text-blue-400'>
+                                                {result.followers.total}
+                                            </span>
+                                            <span>
+                                                followers
+                                            </span>
+                                        </p>
+                                        {/* POPULARITY */}
+                                        <p className='text-xl space-x-2'>
+                                            <span className={`font-semibold text-[${color}]`}>
+                                                {result.popularity}
+                                            </span>
+                                            <span className='font-bold'>
+                                                /
+                                            </span>
+                                            <span>
+                                                100
+                                            </span>
+                                        </p>
+                                    </div>
+
                                 </div>
-                            </Link>
+
+                            </div>
                         )
                     }
 
