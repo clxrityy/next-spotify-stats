@@ -1,5 +1,5 @@
-from flask_cors import CORS
 from flask import Flask
+from flask_cors import CORS
 from requests import get
 import json
 from dotenv import load_dotenv
