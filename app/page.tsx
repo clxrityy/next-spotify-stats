@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Logo from "@/components/Logo";
 import SearchArtist from "@/components/SearchArtist";
 
@@ -29,6 +30,7 @@ export default function Home() {
           <SearchArtist />
 
       </div>
+      <Footer />
     </div>
   )
 }
