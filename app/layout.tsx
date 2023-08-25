@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
   title: 'spotify stats',
@@ -30,6 +31,7 @@ export default function RootLayout({
 
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   )
