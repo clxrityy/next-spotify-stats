@@ -15,16 +15,24 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
-.gradient-box {
-  background: transparent;
-  padding: 2rem;
-  backdrop-filter: blur(1px);
-}
-
 .font-sub {
   font-family: 'Rubik Mono One', sans-serif;
 }
 
 .input {
-  @apply w-[20rem] sm:w-[25rem] md:w-[40rem] lg:w-[30rem] mt-10 shadow appearance-none border border-blue-400 rounded py-4 px-4 mb-3 leading-tight focus:outline-none shadow-blue-400/30 bg-slate-800/75 text-[#eeeeeeea]
+  @apply w-[20rem] sm:w-[25rem] md:w-[30rem] mt-10 shadow appearance-none border border-blue-400 rounded py-4 px-4 mb-3 leading-tight focus:outline-none shadow-blue-400/30 bg-slate-800/75 text-[#eeeeeeea]
+}
+
+.artist-box {
+  background: linear-gradient(#222222, #131313);
+  padding: 1.5rem;
+  @apply drop-shadow-md rounded-xl backdrop:blur-lg hover:scale-105 duration-300 transition-all
+}
+
+.artist-box .link {
+  @apply hover:underline underline-offset-2 hover:text-blue-300 font-semibold text-2xl md:text-3xl lg:text-4xl text-white/95 tracking-wide transition-all
+}
+
+.artist-box .image {
+  @apply hover:animate-pulse flex justify-center items-center
 }

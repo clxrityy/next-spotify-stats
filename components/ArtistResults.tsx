@@ -10,23 +10,40 @@ interface ArtistResultsProps {
 
 const ArtistResults: FC<ArtistResultsProps> = ({ result }) => {
 
+
     return (
         <div className='artist-box container'>
 
-            <div className='flex flex-row space-x-6 justify-normal md:justify-center lg:justify-normal'>
+            <div className='flex flex-row space-x-6 justify-normal md:justify-evenly lg:justify-normal'>
+                <div className='flex flex-col justify-center items-center space-y-3'>
+                    {/* IMAGE */}
+                    <Link href={result.external_urls.spotify}>
+                        <Image src={`${result.images[0].url}`} className='rounded-lg image' width={125} height={150} alt={result.name} />
+                    </Link>
+                    {/* GENRES */}
+                    <p className='text-blue-300 text-center'>
+                        <ul className='grid grid-cols-1 gap-x-4'>
 
-                {/* IMAGE */}
-                <Link href={result.external_urls.spotify}>
-                    <Image src={`${result.images[0].url}`} className='rounded-lg' width={150} height={150} alt={result.name} />
-                </Link>
+                            {
+                                result.genres.map((genre: string) => (
+                                    <li className='text-xs tracking-wide font-sub uppercase'>
+                                        {genre}
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </p>
+                </div>
                 {/* INFO */}
-                <div className='flex flex-col items-start justify-evenly'>
+                <div className='flex flex-col items-start justify-evenly space-y-2'>
                     {/* TITLE */}
                     <Link href={result.external_urls.spotify} className='link'>
-                        <h1 className='font-semibold text-3xl md:text-4xl text-white/95 tracking-wide'>
+                        <h1 className=''>
                             {result.name}
                         </h1>
                     </Link>
+
+
                     {/* FOLLOWERS */}
                     <p className='text-sm space-x-1'>
                         <span className='tracking-tightest text-xs font-semibold text-blue-400'>
@@ -41,7 +58,7 @@ const ArtistResults: FC<ArtistResultsProps> = ({ result }) => {
                         <span className='font-bold text-blue-400'>
                             {result.popularity}
                         </span>
-                        <span className='font-bold'>
+                        <span className='font-semibold opacity-90'>
                             /
                         </span>
                         <span>
