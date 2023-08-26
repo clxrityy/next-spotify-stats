@@ -5,7 +5,7 @@ import SearchArtist from "@/components/SearchArtist";
 
 export default function Home() {
   return (
-    <div className="h-[100vh] md:h-[80vh] w-full flex justify-start items-center">
+    <div className="h-[100vh] md:h-[80vh] w-full flex justify-center items-center">
       <div className="flex flex-col-reverse md:flex-col lg:flex-row justify-center items-center space-x-0 container xl:space-x-[14rem]">
         <div className="rounded-2xl flex flex-col p-[2rem]">
           <div className="flex flex-col md:flex-row lg:flex-col items-center justify-around space-y-4 md:space-y-8">

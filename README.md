@@ -1,4 +1,4 @@
-# [<div style='display:flex;gap:10px;align-items:center;justify-conent:center;'><img src='public/logo.png' alt='logo' style='width:50px;height:50px;' /> NEXT SPOTIFY STATS</div>](https://next-spotify-stats.vercel.app/)
+# [<div style='display:flex;gap:10px;align-items:center;justify-conent:center;'><img src='public/logo.png' alt='logo' style='width:25px;height:25px;' /> NEXT SPOTIFY STATS</div>](https://next-spotify-stats.vercel.app/)
 
 ## Use Python to connect to Spotify's API
 
@@ -49,3 +49,81 @@ def get_auth_header(token):
         "Authorization": "Bearer " + token
     }
 ```
+
+## Create API routes with Flask
+
+```zsh
+pip install flask
+```
+
+```py
+from flask import Flask
+
+app = Flask(__name__)
+
+if __name__ == "__main__":
+    app.run(load_dotenv=True)
+```
+
+### Example route
+
+```py
+# http://127.0.0.1:5328/api/python
+@app.route("/api/python")
+def hello_world():
+    return f"<h1>Hello World</h1>"
+```
+
+## Display data on the front end
+
+- Create an example route to fetch an example piece of data, such as your access token.
+
+```py
+token = get_token()
+
+@app.route("/api/token")
+def tokenRoute():
+    return token
+```
+
+- Now fetch the data in a client component.
+
+`/components/Token.tsx`
+
+```tsx
+'use client';
+import React, { useCallback } from 'react';
+
+const Token = async () => {
+
+    async function getData() {
+        const res = await fetch('http://127.0.0.1:5328/api/token');
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch data")
+        }
+        return res.json();
+    }
+
+    const data = await getData();
+
+    return (
+        <p>
+            {data}
+        </p>
+    )
+
+}
+```
+
+## Template repository from Vercel
+
+View vercel's `nextjs-flask` template [here](https://nextjs-flask-starter.vercel.app/).
+
+```zsh
+npx create-next-app nextjs-flask --example "https://github.com/vercel/examples/tree/main/python/nextjs-flask"
+```
+
+### —
+
+> The Flask server will be running on http://127.0.0.1:5328 – feel free to change the port in `package.json` (you'll also need to update it in `next.config.js`).

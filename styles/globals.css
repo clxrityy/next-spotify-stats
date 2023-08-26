@@ -9,10 +9,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
 
 body {
-  background: #111111;
+  background: #111;
   color: #cccccc;
   margin: 0;
   font-family: 'Noto Sans', sans-serif;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .font-sub {
@@ -20,13 +26,13 @@ body {
 }
 
 .input {
-  @apply w-[20rem] sm:w-[25rem] md:w-[30rem] mt-10 shadow appearance-none border border-blue-400 rounded py-4 px-4 mb-3 leading-tight focus:outline-none shadow-blue-400/30 bg-slate-800/75 text-[#eeeeeeea]
+  @apply w-[20rem] sm:w-[25rem] md:w-[30rem] shadow appearance-none border border-blue-400 rounded py-4 px-4 mb-3 leading-tight focus:outline-none shadow-blue-400/20 bg-slate-800/60 text-[#eeeeeeea]
 }
 
 .artist-box {
   background: linear-gradient(#222222, #131313);
   padding: 1.5rem;
-  @apply drop-shadow-md rounded-xl backdrop:blur-lg hover:scale-105 duration-300 transition-all
+  @apply drop-shadow-lg rounded-xl backdrop:blur-lg hover:scale-105 duration-300 transition-all hover:drop-shadow-2xl cursor-pointer
 }
 
 .artist-box .link {
