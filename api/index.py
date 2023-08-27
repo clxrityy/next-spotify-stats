@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, make_response, escape
 from flask_cors import CORS
 from requests import get
 import json
@@ -68,6 +68,7 @@ def searchArtist(artist_name: str):
 # /api/search/{artist}
 @app.route("/api/search/<string:id>")
 def search(id: str):
+    id = escape(id)
     if len(id) > 0:
         results = searchArtist(id)
     else:
@@ -81,4 +82,4 @@ def hello_world():
 
 ## RUN APP
 if __name__ == "__main__":
-    app.run(debug=True, load_dotenv=True)
+    app.run(load_dotenv=True)
