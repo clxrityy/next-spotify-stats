@@ -3,6 +3,7 @@ import { Result } from '@/util/types';
 import React, { useCallback, useRef, useState } from 'react';
 import ArtistResults from './ArtistResults';
 import { searchArtistEndpoint } from '@/util/search';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 
 const SearchArtist = () => {
@@ -12,6 +13,7 @@ const SearchArtist = () => {
     const [active, setActive] = useState<boolean>(false);
     const [result, setResult] = useState<Result>();
     const [popLevel, setPopLevel] = useState<number>(0);
+    const [loading, setLoading] = useState<boolean>(false);
 
     async function getData(query: string) {
         const res = await fetch(searchArtistEndpoint(query));
@@ -28,6 +30,7 @@ const SearchArtist = () => {
         setQuery(query);
         if (query.length) {
             try {
+                setLoading(true);
                 await getData(query)
                     .then(res => {
                         setResult({
@@ -43,6 +46,7 @@ const SearchArtist = () => {
                     }).finally(() => {
                         if (popLevel != result!.popularity) {
                             setPopLevel(result!.popularity);
+                            setLoading(false);
                         }
                     });
             } catch (err) {
@@ -82,10 +86,15 @@ const SearchArtist = () => {
                         required
                     />
 
-                    {
+                    {/* {
                         active && result?.name != null && (
                             <ArtistResults result={result} />
-                        )
+                        ) 
+                    } */}
+                    {
+                        active && result?.name.length != null ? (
+                            <ArtistResults result={result} />
+                        ) : loading && query.length > 0 && <AiOutlineLoading3Quarters className='text-6xl animate-spin text-blue-400 font-semibold' />
                     }
 
                 </div>
